@@ -12,7 +12,7 @@
 
           <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"> <a href="<?php echo base_url();?>index.php/welcome"> Home </a></li>
+            <li class="active"> <a href="<?php echo base_url();?>"> Home </a></li>
             <li> <a href="#"> About </a></li>
             <li calss="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Services<b class="caret"></b> </a>
@@ -31,10 +31,14 @@
             <li>
                <a href="#contact" data-toggle="modal">Contact</a>
             </li>
-
-             <li>
-               <a href="<?php echo base_url();?>index.php/welcome/logout" data-toggle="modal">Logout</a>
-            </li>
+            <?php $check = $this->session->userdata('username');
+                if(!empty($check))
+                  { ?>
+                     <li>
+                       <a href="<?php echo base_url();?>welcome/logout" data-toggle="modal">Logout</a>
+                     </li>
+                  <?php } ?>
+            
 
           </ul>
           </div>

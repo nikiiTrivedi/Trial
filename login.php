@@ -23,7 +23,7 @@
              </div>
 
               <div class="panel-body">
-                <form method="post" id="register-form" role="form" action="<?php echo base_url();?>index.php/welcome/checklogin">
+                <form method="post" id="login-form" role="form" action="<?php echo base_url();?>welcome/checklogin">
                   <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                       <div class="form-group">
@@ -41,15 +41,30 @@
                  </div>
 
                 <input type="submit" value="submit" class="btn btn-info btn-block">
+                <center> or </center>
+                  <a href ="<?php echo base_url().'reg';?>" class="btn btn-info btn-block"> Registration </a>
+          </div>
                   </form>
             </div>
-          </div>
+            <h6 align="center" style="color:red">
+                 <?php
+                    if(!empty($message)) 
+                    {
+                        print_r($message);
+                    }     
+                 ?>
+                 </h6>
+                  
+
         </div>
       </div>
     </div>  
-
-   <?php $this->load->view('footer'); ?>
-
+  
+   <?php
+   //$ms = $this->load->vars($data);
+   //print_r($ms['message']);
+    $this->load->view('footer');
+  ?>
 </body>
 </html>
 
@@ -62,7 +77,7 @@
   
 $(document).ready(function() 
 {
-    $('#register-form').bootstrapValidator
+    $('#rlogin-form').bootstrapValidator
     ({
        
         feedbackIcons: 
@@ -81,6 +96,7 @@ $(document).ready(function()
                     {
                         message: 'Username or password is incorrect'
                     }
+
                 }
             },
              
@@ -92,11 +108,15 @@ $(document).ready(function()
                     {
                         message: 'Username or password is incorrect'
                     }                  
-                   
-                    
+                                     
                 }
             }
+
+
         }
     });
 });
-  </script>
+
+
+  
+    </script>

@@ -1,54 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+ 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Trial</title>
- <?php $this->load->view('css'); ?>
-
-
+    <?php $this->load->view('css'); ?>
+    <?php $this->load->view('js'); ?>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+     <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+ 
   </head>
+ 
   <body>
-    
-  <?php $this->load->view('header'); ?>
-    <!-- Bootstrap -->
-    
-  <div class="container">
-        <div class="jumbotron">
-          <h1> New Journey.. </h1>
-          <p> Beginning is always beautiful </p>
-          <a href ="<?php echo base_url();?>index.php/welcome/login1" class="btn btn-primary"> Login </a>
-          <a href ="<?php echo base_url();?>index.php/welcome/reg" class="btn btn-primary"> Registration </a>
-        </div>
-  </div>
-   <table border="1">
-<tr>
-<th>User Name</th>
-
-</tr>
-<?php foreach($result as $row){ ?>
-<tr><td><?php  echo $row->first_name;?> </td>
-
- </tr>
-<?php } ?>
-</table >
-
- <!-- <div class="row">
-  <div class="col-md-15 ">
-    <a href="#" class="thumbnail">
-      
-      <img src="<?php echo base_url().'images/abc.jpg'?>" alt="leh ladakh" style="width:200px;height:100px">
-    </a>
-  </div> -->
-
-<?php $this->load->view('footer'); ?>
+    <div class="container">
+     <table class="table table-striped table-bordered" id="example" class="display" cellspacing="0" width="100%" >
+    <thead>
+    <tr>
+      <th>User Name</th>
+      <th>last_name</th>
+      <th>email</th>
+      <th>Update</th>
+    </tr>
+    </thead>
+     <tbody>
+      <?php foreach($result as $row){ ?>
+        <tr class="success" >
+         <?php
+          $a = $row->id; 
+          ?>         
+          <td><?php  echo $row->first_name;?> 
+          </td>
+          <td><?php  echo $row->last_name;?> 
+          </td>
+          <td><?php  echo $row->email;?> 
+          </td>
+          <td> <a href ="<?php echo base_url().'edit_content/show_result_id/'.$a ?>"> Edit 
+          </a> </td>
+        </tr>
+        <?php } ?>
+    </tbody>
+  </table >
+</div>
+</div>
 </body>
 </html>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>  
-  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>  
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"/>
-  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"> </script>
- 
+ </body>
+</html>
+  
+ <script type="text/javascript">
+   $(document).ready(function(){
+     $('#example').DataTable();
+   });
+ </script>
